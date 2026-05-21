@@ -43,31 +43,23 @@ A scanning lens for the entries below.
 
 ## Evaluation Platforms
 
-Hosted/SaaS platforms (some with open-source cores) for tracing, dataset management, and running evals at scale.
+Hosted platforms (some with open-source cores) that explicitly target agent trajectories, not just LLM calls.
 
-- [LangSmith](https://www.langchain.com/langsmith) — Tracing + datasets + LLM-as-judge eval; tight LangChain/LangGraph integration.
-- [Langfuse](https://github.com/langfuse/langfuse) — Open-source LLM observability + eval (MIT).
-- [Braintrust](https://www.braintrust.dev/) — Eval-first dev loop; strong dataset + experiment UX.
-- [Arize Phoenix](https://github.com/Arize-ai/phoenix) — Open-source tracing + evals; OpenTelemetry-native.
-- [Patronus AI](https://www.patronus.ai/) — Automated LLM/agent eval + red-teaming.
-- [Helicone](https://github.com/Helicone/helicone) — Open-source LLM observability with eval hooks.
-- [Agenta](https://github.com/Agenta-AI/agenta) — Open-source LLMOps: prompt mgmt + eval + observability.
 - [AgentOps](https://github.com/AgentOps-AI/agentops) — Agent-specific tracing + replay + cost/quality eval.
+- [LangSmith](https://www.langchain.com/langsmith) — Datasets + LLM-as-judge eval over agent traces; tight LangGraph integration.
+- [Langfuse](https://github.com/langfuse/langfuse) — Open-source counterpart with agent-trace observability (MIT).
+- [Braintrust](https://www.braintrust.dev/) — Eval-first dev loop with strong agent-trajectory dataset UX.
 
 ## Open-Source Eval Libraries
 
-Code-first frameworks you drop into a repo and run in CI.
+Code-first frameworks built for agent evaluation, drop into a repo and run in CI.
 
 - [Harbor](https://github.com/harbor-framework/harbor) — Containerized agent-eval framework; runs trials at scale across cloud providers (Daytona, Modal). Hosts the Terminal-Bench 2.0 registry.
-- [Inspect AI](https://github.com/UKGovernmentBEIS/inspect_ai) — UK AISI's eval framework; the de-facto choice for frontier-model + agent safety evals.
+- [Inspect AI](https://github.com/UKGovernmentBEIS/inspect_ai) — UK AISI's eval framework; the de-facto choice for frontier-model agent evals (tool use, multi-step tasks).
 - [agentevals](https://github.com/langchain-ai/agentevals) — Ready-made trajectory evaluators for agents.
-- [Strands Evals](https://github.com/strands-agents/evals) — Multi-agent interaction analysis + automated experiment generation.
 - [AWS Agent Evaluation](https://github.com/awslabs/agent-evaluation) — Generative-AI-powered framework for testing virtual agents.
-- [DeepEval](https://github.com/confident-ai/deepeval) — Pytest-style; agent-specific metrics (task completion, tool correctness) on top of general LLM metrics.
-- [Promptfoo](https://github.com/promptfoo/promptfoo) — CI-friendly prompt/agent evals + red-teaming.
-- [OpenAI Evals](https://github.com/openai/evals) — Reference framework + open eval registry; broader than agents but agent-capable.
-- [Ragas](https://github.com/explodinggradients/ragas) — RAG metrics; useful when the agent's quality is bottlenecked by retrieval.
-- [TruLens](https://github.com/truera/trulens) — Feedback functions over LLM/agent traces.
+- [Strands Evals](https://github.com/strands-agents/evals) — Multi-agent interaction analysis + automated experiment generation.
+- [DeepEval](https://github.com/confident-ai/deepeval) — Pytest-style; agent-specific metrics (task completion, tool correctness).
 
 ## Agent Benchmarks
 
@@ -91,11 +83,8 @@ Code-first frameworks you drop into a repo and run in CI.
 - [AndroidWorld](https://github.com/google-research/android_world) — Reproducible Android benchmark.
 
 ### Tool-Use & Function-Calling
-- [Berkeley Function-Calling Leaderboard (BFCL)](https://gorilla.cs.berkeley.edu/leaderboard.html) — The reference tool-use leaderboard.
-- [ToolBench](https://github.com/OpenBMB/ToolBench) — 16k+ real-world API tasks.
-- [API-Bank](https://github.com/AlibabaResearch/DAMO-ConvAI/tree/main/api-bank) — Tool-augmented LLM eval.
-- [MCPEval](https://arxiv.org/abs/2507.12806) — MCP-based automated task generation + deep eval.
-- [τ-bench / τ²-bench](https://arxiv.org/abs/2406.12045) — Customer-service-with-tools benchmark; multi-turn, policy-bound.
+- [ToolBench](https://github.com/OpenBMB/ToolBench) — 16k+ real-world API tasks for multi-step tool-using agents.
+- [MCPEval](https://arxiv.org/abs/2507.12806) — MCP-based automated task generation + deep eval for tool-using agents.
 
 ### Conversational / Customer-Service Agents
 - [τ-bench / τ²-bench](https://arxiv.org/abs/2406.12045) — Sierra's go-to benchmark for conversational tool-use agents; policy-bound, dual-control.
@@ -124,17 +113,13 @@ Production-ready patterns to combine with the above:
 - **Rubric-based LLM judges** — decompose "quality" into specific yes/no assertions; aggregate rather than asking one fuzzy "is this good?" question.
 - **Judge calibration** — periodically validate LLM judges against a human-labeled gold set; track drift.
 - **`pass^k` consistency** — run the same task *k* times, require all-pass. The metric that actually correlates with shipping.
-- **Adversarial / red-team evals** — Patronus, Promptfoo, and Inspect AI all support this.
+- **Adversarial / red-team evals** — for agent-specific prompt injection and policy violation; Inspect AI is the most agent-native option.
 
 ## Reading & Methodology
 
-- Hamel Husain — [Your AI product needs evals](https://hamel.dev/blog/posts/evals/).
-- Eugene Yan — [Evaluating LLM-based judges](https://eugeneyan.com/writing/llm-evaluators/).
 - Anthropic — [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents).
 - Anthropic — [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents).
-- OpenAI — [Practices for governing agentic AI systems](https://openai.com/research/practices-for-governing-agentic-ai-systems).
-- Shreya Shankar — [Data flywheels for LLM applications](https://www.sh-reya.com/blog/ai-engineering-flywheel/).
-- [VoltAgent/awesome-ai-agent-papers](https://github.com/VoltAgent/awesome-ai-agent-papers) — recent agent papers, including eval-focused work.
+- [VoltAgent/awesome-ai-agent-papers](https://github.com/VoltAgent/awesome-ai-agent-papers) — recent agent papers, with an eval section.
 
 ## Related Lists
 
