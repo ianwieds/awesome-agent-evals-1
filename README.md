@@ -58,25 +58,23 @@ Hosted/SaaS platforms (some with open-source cores) for tracing, dataset managem
 
 Code-first frameworks you drop into a repo and run in CI.
 
+- [Harbor](https://github.com/harbor-framework/harbor) — Containerized agent-eval framework; runs trials at scale across cloud providers (Daytona, Modal). Hosts the Terminal-Bench 2.0 registry.
 - [Inspect AI](https://github.com/UKGovernmentBEIS/inspect_ai) — UK AISI's eval framework; the de-facto choice for frontier-model + agent safety evals.
-- [OpenAI Evals](https://github.com/openai/evals) — Reference framework + open eval registry.
-- [DeepEval](https://github.com/confident-ai/deepeval) — Pytest-style; many built-in metrics (G-Eval, hallucination, faithfulness, task completion).
-- [Promptfoo](https://github.com/promptfoo/promptfoo) — CI-friendly prompt/agent evals + red-teaming.
-- [Ragas](https://github.com/explodinggradients/ragas) — RAG metrics; widely used for retrieval-heavy agents.
-- [TruLens](https://github.com/truera/trulens) — Feedback functions over LLM/agent traces.
-- [MLflow LLM Evaluate](https://mlflow.org/docs/latest/llms/llm-evaluate/) — Eval integration in MLflow tracking.
 - [agentevals](https://github.com/langchain-ai/agentevals) — Ready-made trajectory evaluators for agents.
 - [Strands Evals](https://github.com/strands-agents/evals) — Multi-agent interaction analysis + automated experiment generation.
 - [AWS Agent Evaluation](https://github.com/awslabs/agent-evaluation) — Generative-AI-powered framework for testing virtual agents.
+- [DeepEval](https://github.com/confident-ai/deepeval) — Pytest-style; agent-specific metrics (task completion, tool correctness) on top of general LLM metrics.
+- [Promptfoo](https://github.com/promptfoo/promptfoo) — CI-friendly prompt/agent evals + red-teaming.
+- [OpenAI Evals](https://github.com/openai/evals) — Reference framework + open eval registry; broader than agents but agent-capable.
+- [Ragas](https://github.com/explodinggradients/ragas) — RAG metrics; useful when the agent's quality is bottlenecked by retrieval.
+- [TruLens](https://github.com/truera/trulens) — Feedback functions over LLM/agent traces.
 
 ## Agent Benchmarks
 
 ### Coding Agents
 - [SWE-bench / SWE-bench Verified](https://www.swebench.com/) — Resolve real GitHub issues end-to-end. The standard.
-- [Terminal-Bench](https://www.tbench.ai/) — Agents operating a real shell across multi-step tasks.
-- [LiveCodeBench](https://livecodebench.github.io/) — Contamination-resistant, time-stamped coding eval.
-- [HumanEval](https://github.com/openai/human-eval) / [MBPP](https://github.com/google-research/google-research/tree/master/mbpp) — Function-level coding (mostly LLM, not agentic).
-- [LoCoBench-Agent](https://arxiv.org/abs/2511.13998) — Long-context software engineering, interactive.
+- [Terminal-Bench](https://www.tbench.ai/) — Agents operating a real shell across multi-step tasks; v2 ships via Harbor.
+- [LoCoBench-Agent](https://arxiv.org/abs/2511.13998) — Long-context software engineering in an interactive setting.
 
 ### Web / Browser Agents
 - [WebArena](https://webarena.dev/) — Realistic self-hosted web environments (e-commerce, GitLab, Reddit clone).
@@ -100,21 +98,16 @@ Code-first frameworks you drop into a repo and run in CI.
 - [τ-bench / τ²-bench](https://arxiv.org/abs/2406.12045) — Customer-service-with-tools benchmark; multi-turn, policy-bound.
 
 ### Conversational / Customer-Service Agents
-- [τ-bench](https://arxiv.org/abs/2406.12045) — As above; the go-to for conversational tool-use agents.
-- [MultiWOZ](https://github.com/budzianowski/multiwoz) — Multi-domain task-oriented dialogue.
-- [MT-Bench](https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge) — Multi-turn LLM-as-judge benchmark.
+- [τ-bench / τ²-bench](https://arxiv.org/abs/2406.12045) — Sierra's go-to benchmark for conversational tool-use agents; policy-bound, dual-control.
 
 ### Research / Deep-Research Agents
 - [GAIA](https://huggingface.co/datasets/gaia-benchmark/GAIA) — General-assistant benchmark; multi-step research with tools.
-- [BrowseComp](https://openai.com/index/browsecomp/) — Hard browsing/research questions.
-- [HLE — Humanity's Last Exam](https://lastexam.ai/) — Frontier knowledge eval.
+- [BrowseComp](https://openai.com/index/browsecomp/) — Hard browsing/research questions for autonomous browsing agents.
 
 ### General / Multi-Domain
 - [AgentBench](https://github.com/THUDM/AgentBench) — 8 environments covering OS, DB, web, code, games.
 - [AgentBoard](https://github.com/hkust-nlp/AgentBoard) — Fine-grained progress-rate metric across domains.
 - [AgentQuest](https://arxiv.org/abs/2404.06411) — Modular framework for measuring agent progress.
-- [HELM](https://github.com/stanford-crfm/helm) — Stanford CRFM's holistic eval.
-- [BIG-bench](https://github.com/google/BIG-bench) — Broad collaborative LLM benchmark (some agent-relevant tasks).
 
 ## Grader Patterns
 
