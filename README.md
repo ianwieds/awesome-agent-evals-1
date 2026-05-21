@@ -6,7 +6,6 @@ Strong evals are what separate a viral demo from a production agent. The compoun
 
 ## Contents
 
-- [Mental Model](#mental-model)
 - [Evaluation Platforms](#evaluation-platforms)
 - [Open-Source Eval Libraries](#open-source-eval-libraries)
 - [Agent Benchmarks](#agent-benchmarks)
@@ -17,29 +16,10 @@ Strong evals are what separate a viral demo from a production agent. The compoun
   - [Conversational / Customer-Service Agents](#conversational--customer-service-agents)
   - [Research / Deep-Research Agents](#research--deep-research-agents)
   - [General / Multi-Domain](#general--multi-domain)
-- [Grader Patterns](#grader-patterns)
 - [Reading & Methodology](#reading--methodology)
 - [Related Lists](#related-lists)
 - [Contributing](#contributing)
 - [License](#license)
-
-## Mental Model
-
-A scanning lens for the entries below.
-
-**Eval depth**
-- *Single-turn* — prompt → response → grade.
-- *Multi-turn* — span several turns; state carries across.
-- *Agentic* — tool calls compound errors across many turns; small slips become big failures.
-
-**Grader types**
-- *Code-based* — fast, deterministic, cheap; brittle to valid variations. (string match, exec tests, state checks)
-- *Model-based* (LLM-as-judge) — flexible, scalable; non-deterministic and biased without calibration.
-- *Human* — gold standard; slow and expensive. Reserve for calibration sets and final QA.
-
-**Reliability metrics**
-- `pass@k` — succeeds at least once in *k* attempts. Useful for capability ceilings.
-- `pass^k` — succeeds in *all* *k* attempts. The metric production agents actually need.
 
 ## Evaluation Platforms
 
@@ -97,23 +77,6 @@ Code-first frameworks built for agent evaluation, drop into a repo and run in CI
 - [AgentBench](https://github.com/THUDM/AgentBench) — 8 environments covering OS, DB, web, code, games.
 - [AgentBoard](https://github.com/hkust-nlp/AgentBoard) — Fine-grained progress-rate metric across domains.
 - [AgentQuest](https://arxiv.org/abs/2404.06411) — Modular framework for measuring agent progress.
-
-## Grader Patterns
-
-| Grader | Strengths | Weaknesses | Best For |
-|---|---|---|---|
-| Code-based | Fast, deterministic, free | Brittle to valid variations | Test execution, structured outputs, state checks |
-| Model-based (LLM-as-judge) | Flexible, handles open text | Non-deterministic, biased, costly | Quality, tone, groundedness, rubric scoring |
-| Human | Gold-standard | Slow, expensive, doesn't scale | Calibration sets, sensitive domains, final QA |
-
-Production-ready patterns to combine with the above:
-
-- **Trajectory eval** — score the *sequence* of tool calls, not just the final answer. ([agentevals](https://github.com/langchain-ai/agentevals) is a good starting point.)
-- **State verification** — after the run, inspect the environment (DB rows, file system, DOM, ticket status) rather than the agent's self-report.
-- **Rubric-based LLM judges** — decompose "quality" into specific yes/no assertions; aggregate rather than asking one fuzzy "is this good?" question.
-- **Judge calibration** — periodically validate LLM judges against a human-labeled gold set; track drift.
-- **`pass^k` consistency** — run the same task *k* times, require all-pass. The metric that actually correlates with shipping.
-- **Adversarial / red-team evals** — for agent-specific prompt injection and policy violation; Inspect AI is the most agent-native option.
 
 ## Reading & Methodology
 
